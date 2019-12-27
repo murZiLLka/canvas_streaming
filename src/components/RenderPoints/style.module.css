@@ -1,0 +1,45 @@
+.RenderPoints {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: -50;
+}
+.RenderPoints .signLeft {
+  color: #f8f9fa;
+  font-size: 20px;
+  position: absolute;
+  top: 840px;
+  left: 430px;
+}
+.RenderPoints .signRight {
+  color: #f8f9fa;
+  font-size: 20px;
+  position: absolute;
+  bottom: 905px;
+  right: 8px;
+}
+.RenderPoints .signMiddle {
+  color: #f8f9fa;
+  font-size: 20px;
+  position: absolute;
+  bottom: 905px;
+  left: 430px;
+}
+.RenderPoints .signMiddleLeft {
+  color: #f8f9fa;
+  font-size: 20px;
+  position: absolute;
+  top: 390px;
+  left: 412px;
+}
+.RenderPoints .signMiddleRight {
+  color: #f8f9fa;
+  font-size: 20px;
+  position: absolute;
+  bottom: 905px;
+  left: 1180px;
+}
+
+/*# sourceMappingURL=style.module.css.map */

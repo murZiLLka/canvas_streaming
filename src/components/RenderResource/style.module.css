@@ -1,0 +1,29 @@
+.RenderResource .OutputResource {
+  position: absolute;
+  width: 1450px;
+  height: 820px;
+  right: 20px;
+  top: 20px;
+  z-index: -999;
+  pointer-events: none;
+  border: 3px solid white;
+}
+.RenderResource .OutputResource img {
+  width: 1445px;
+  height: 815px;
+}
+.RenderResource .ReactPlayerNav {
+  position: absolute;
+  right: 280px;
+  top: 880px;
+  width: 45%;
+  display: flex;
+}
+.RenderResource .ReactPlayerNav input {
+  width: 250px;
+}
+.RenderResource .ReactPlayerNav > * {
+  margin-right: 10px;
+}
+
+/*# sourceMappingURL=style.module.css.map */

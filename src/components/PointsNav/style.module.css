@@ -1,0 +1,9 @@
+.PointsNav {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.PointsNav > * {
+  margin-right: 10px;
+}
+
+/*# sourceMappingURL=style.module.css.map */
