@@ -17,9 +17,9 @@ const PointsNav = ({startConstructor, finishConstructor, isConstructorActive = f
                 onClick={finishConstructor}
                 disabled={!isConstructorActive}
                 variant="outline-light">
-                finish
-                creating
+                finish creating
             </Button>
+
         </div>
     );
 };

@@ -17,13 +17,15 @@ class PointWorker extends Component {
         currentPointIndex: false,
     };
 
-
     catchClick = element => {
         if (this.state.isEditorActive) {
             const coordinates = [...this.state.coordinates];
+
             coordinates[this.state.currentPointIndex] = this.createPoint(element);
+
             this.setState({coordinates});
         }
+
         if (!this.state.isConstructorActive) return null;
 
         const coordinates = [...this.state.coordinates];
@@ -31,7 +33,6 @@ class PointWorker extends Component {
         coordinates.push(this.createPoint(element));
 
         this.setState({coordinates});
-
     };
 
     startConstructor = () => {
@@ -53,12 +54,14 @@ class PointWorker extends Component {
 
         figures.push(newFigure);
 
-        this.setState(prevState => ({isConstructorActive: false, coordinates: [], figures}));
+        this.setState({isConstructorActive: false, coordinates: [], figures});
     };
 
     getCertainFigure = index => {
         if (this.state.isEditorActive) return null;
+
         this.setState(prevState => ({
+            currentPointIndex: false,
             currentFigure: prevState.figures[index],
             coordinates: prevState.figures[index].coordinates
         }));
@@ -67,18 +70,18 @@ class PointWorker extends Component {
     getCertainPoint = index => this.setState({currentPointIndex: index});
 
     startEditPoint = () => this.setState({isEditorActive: true});
-    endEditPoint = () => {
 
+    endEditPoint = () => {
         const figures = [...this.state.figures];
 
         figures[this.state.currentFigure.index - 1].coordinates = this.state.coordinates;
 
         this.setState({figures, isEditorActive: false, currentPointIndex: false, currentFigure: false})
-
     };
 
     calculateCoordinates(element) {
         const {x, y, width, height} = element.target.getBoundingClientRect();
+
         return {
             lt: {x, y},
             rt: {x: x + width, y},
@@ -89,7 +92,7 @@ class PointWorker extends Component {
 
     convertCoordinates(blockCoordinates, {x, y}) {
         const xFinal = (x - blockCoordinates.lt.x) / (blockCoordinates.rt.x - blockCoordinates.lt.x),
-            yFinal = 1 - (y - blockCoordinates.lt.y) / (blockCoordinates.rb.y - blockCoordinates.rt.y);
+            yFinal = (y - blockCoordinates.lt.y) / (blockCoordinates.rb.y - blockCoordinates.rt.y);
 
         return {
             x: +xFinal.toFixed(2),
@@ -101,29 +104,35 @@ class PointWorker extends Component {
         const {clientX: x, clientY: y} = element,
             blockCoordinates = this.calculateCoordinates(element),
             convertedCoordinates = this.convertCoordinates(blockCoordinates, {x, y});
+
         return {
             original: {x, y},
             output: convertedCoordinates
         };
-
     }
 
 
     render() {
-
         return (
             <>
                 <ClickCatcher catchClick={this.catchClick}/>
-                <RenderPoints pointsArr={this.state.coordinates.map(el => el.original)}/>
+                <RenderPoints
+                    currentPointIndex={this.state.currentPointIndex}
+                    pointsArr={this.state.coordinates.map(el => el.original)}
+                />
                 <PointsNav
                     startConstructor={this.startConstructor}
                     finishConstructor={this.createFigure}
                     isConstructorActive={this.state.isConstructorActive}
                 />
-                <FigureList isEditorActive={this.state.isEditorActive} figuresArr={this.state.figures}
-                            getCertainFigure={this.getCertainFigure}/>
-                <PointList isEditorActive={this.state.isEditorActive} figure={this.state.currentFigure}
-                           getCertainPoint={this.getCertainPoint}/>
+                <FigureList
+                    isEditorActive={this.state.isEditorActive}
+                    figuresArr={this.state.figures}
+                    getCertainFigure={this.getCertainFigure}/>
+                <PointList
+                    isEditorActive={this.state.isEditorActive}
+                    figure={this.state.currentFigure}
+                    getCertainPoint={this.getCertainPoint}/>
                 <EditFigure
                     currentFigure={this.state.currentFigure}
                     currentPointIndex={this.state.currentPointIndex}
@@ -131,9 +140,7 @@ class PointWorker extends Component {
                     endEditPoint={this.endEditPoint}
                     isEditorActive={this.state.isEditorActive}
                     coordinates={this.state.coordinates}
-
                 />
-
             </>
         );
     }

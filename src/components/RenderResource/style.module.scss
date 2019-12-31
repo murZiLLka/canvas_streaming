@@ -9,29 +9,33 @@
     z-index: -999;
     pointer-events: none;
     border: 3px solid white;
-    img{
+
+    img {
       width: 1445px;
       height: 815px;
     }
   }
 
-
   .ReactPlayerNav {
     position: absolute;
-    right: 280px;
+    right: 60px;
     top: 880px;
-    width: 45%;
+    width: 65%;
     display: flex;
-    input{
+
+
+    input {
       width: 250px;
+    }
+
+    .File {
+      width: 300px;
+
+
     }
 
     & > * {
       margin-right: 10px;
     }
-
-
-
-
   }
 }

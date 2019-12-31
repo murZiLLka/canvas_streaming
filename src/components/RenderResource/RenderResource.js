@@ -4,30 +4,31 @@ import ReactPlayer from "react-player";
 import ResourceNav from "./ResourceNav";
 
 const RenderResource = ({resourceLink, resourceType, isPlay, togglePlayer, setLink}) => {
-    const outputResource = resourceType === 'video' ? (
-        <ReactPlayer
-            url={resourceLink}
-            playing={isPlay}
-            width={'100%'}
-            height={'100%'}
-        />
+    const outputResource =
+        resourceType === 'video' ?
+            <ReactPlayer
+                url={resourceLink}
+                playing={isPlay}
+                width={'100%'}
+                height={'100%'}/>
+            :
+            (<img src={resourceLink} alt="IMG"/>);
 
-    ) : (<img src={resourceLink} alt="IMG"/>);
+    return (
+        <div className={styles.RenderResource}>
 
-    return (<div className={styles.RenderResource}>
+            <div className={styles.OutputResource}>
+                {outputResource}
+            </div>
 
-        <div className={styles.OutputResource}>
-            {outputResource}
-        </div>
+            <ResourceNav
+                togglePlayer={togglePlayer}
+                resourceType={resourceType}
+                setLink={setLink}
+                resourceLink={resourceLink}
+            />
 
-
-        <ResourceNav
-            togglePlayer={togglePlayer}
-            resourceType={resourceType}
-            setLink={setLink}
-            resourceLink={resourceLink}
-        />
-    </div>);
+        </div>);
 };
 
 export default RenderResource;
